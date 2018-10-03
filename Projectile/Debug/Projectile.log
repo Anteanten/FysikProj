@@ -1,0 +1,3 @@
+﻿Debug\Constant.obj : warning LNK4042: object specified more than once; extras ignored
+main.obj : error LNK2005: "float __cdecl Constant::calcGravity(float,class sf::Vector3<float>,class sf::Vector3<float>)" (?calcGravity@Constant@@YAMMV?$Vector3@M@sf@@0@Z) already defined in Constant.obj
+C:\Users\Anton\source\repos\Projectile\Debug\Projectile.exe : fatal error LNK1169: one or more multiply defined symbols found
