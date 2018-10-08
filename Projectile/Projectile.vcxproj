@@ -123,13 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Constant.cpp" />
     <ClCompile Include="Constant.h" />
+    <ClCompile Include="Gui.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Rocket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Gui.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Rocket.h" />
   </ItemGroup>

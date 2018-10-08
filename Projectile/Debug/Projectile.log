@@ -1,3 +1,36 @@
-﻿Debug\Constant.obj : warning LNK4042: object specified more than once; extras ignored
-main.obj : error LNK2005: "float __cdecl Constant::calcGravity(float,class sf::Vector3<float>,class sf::Vector3<float>)" (?calcGravity@Constant@@YAMMV?$Vector3@M@sf@@0@Z) already defined in Constant.obj
-C:\Users\Anton\source\repos\Projectile\Debug\Projectile.exe : fatal error LNK1169: one or more multiply defined symbols found
+﻿  Rocket.cpp
+c:\users\boss_student\desktop\fysik\projectile\constant.h(9): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(9): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(10): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(13): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\users\boss_student\desktop\fysik\projectile\constant.h(13): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\boss_student\desktop\fysik\projectile\constant.h(16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(16): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+  Object.cpp
+  main.cpp
+c:\users\boss_student\desktop\fysik\projectile\constant.h(9): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(9): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(10): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(13): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\users\boss_student\desktop\fysik\projectile\constant.h(13): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\boss_student\desktop\fysik\projectile\constant.h(16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(16): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+  Gui.cpp
+c:\users\boss_student\desktop\fysik\projectile\gui.cpp(5): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\gui.cpp(6): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\gui.cpp(12): warning C4018: '<': signed/unsigned mismatch
+c:\users\boss_student\desktop\fysik\projectile\gui.cpp(22): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\gui.cpp(37): warning C4018: '<': signed/unsigned mismatch
+  Constant.h
+c:\users\boss_student\desktop\fysik\projectile\constant.h(9): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(9): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(10): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(13): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+c:\users\boss_student\desktop\fysik\projectile\constant.h(13): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\boss_student\desktop\fysik\projectile\constant.h(16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\fysik\projectile\constant.h(16): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+  Generating Code...
+  Projectile.vcxproj -> C:\Users\Boss_student\Desktop\fysik\Debug\Projectile.exe

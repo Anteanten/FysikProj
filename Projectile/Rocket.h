@@ -3,6 +3,7 @@
 #include "Object.h"
 #include <math.h>
 #include <iostream>
+#include "Constant.h"
 
 class Rocket : public Object {
 private:
@@ -12,6 +13,8 @@ private:
 	sf::RectangleShape shape;
 	sf::Text text;
 	sf::Font font;
+
+	sf::Vector3f c;
 public:
 	Rocket(sf::Vector3f realPosition, sf::Vector2f velocity, float thrust, sf::Vector2f forward);
 

@@ -5,7 +5,7 @@ Rocket::Rocket(sf::Vector3f position, sf::Vector2f velocity, float thrust, sf::V
 	this->thrust = thrust;
 	this->forward = forward;
 	this->mass = 100;
-	this->position = sf::Vector2f(0, 0);
+	this->position = sf::Vector2f(400, 300);
 	shape.setPosition(this->position);
 	shape.setSize(sf::Vector2f(5, 10));
 	shape.setFillColor(sf::Color::White);
@@ -19,17 +19,18 @@ void Rocket::update(float dt, float gravity)
 {
 	float speed = sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
 	sf::Vector2f drag(0,0);
-	if(speed != 0)
-	drag = sf::Vector2f(velocity.x / speed, velocity.y / speed)*(float)(0.5 * 1.23 * 0.5 * 1*1*3.14 * speed * speed) / mass;
+	float d = Constant::calcAirDensity(realPosition.z - Constant::EarthRadie);
+	if(speed != 0 && d != 0)
+	drag = -sf::Vector2f(velocity.x / speed, velocity.y / speed)*(float)(0.5 * d * 0.5 * 1*1*3.14 * speed * speed) / mass;
 	
 	//Rocket update
-	accelleration = forward * thrust / mass + sf::Vector2f(0, gravity) - drag;
+	accelleration = forward * thrust / mass + sf::Vector2f(0, gravity) + drag;
 	velocity += accelleration * dt;
-	position += velocity * dt;
-	realPosition += sf::Vector3f(velocity.x, 0, velocity.y);
-
-	//Shape update
-	shape.setPosition(position - shape.getSize()/(float)2);
+	c += sf::Vector3f(velocity.x, 0, -velocity.y) * dt;
+	if (c.z > 1) {
+		realPosition += c;
+		c = sf::Vector3f(0, 0, 0);
+	}
 
 	//Text update
 	text.setPosition(position + sf::Vector2f(10, 0));
