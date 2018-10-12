@@ -24,7 +24,7 @@ namespace Constant {
 
 	static float calcAirDensity(float height)
 	{
-		float d = airDensity[0];
+		float d = 0;
 		for (int i = 1; i < 9; i++) {
 			if (height > airHeight[i - 1] && height < airHeight[i]) {
 				d = (airDensity[i - 1] * (airHeight[i] - height) + airDensity[i] * (height - airHeight[i - 1])) / (airHeight[i] - airHeight[i - 1]);

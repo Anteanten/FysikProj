@@ -6,7 +6,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(1024, 768), "Projectiles!");
 	sf::View view = window.getView();
 	Gui gui(window);
 
