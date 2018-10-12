@@ -4,6 +4,9 @@
 #include "constant.h"
 #include "Gui.h"
 
+//Use this for calculations as it is double instead of float
+typedef sf::Vector2<double> Vector2d;
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1024, 768), "Projectiles!");
@@ -14,17 +17,42 @@ int main()
 	float deltaTime;
 	float timeCount = 0;
 	float secCount = 0;
+	int fps = 0;
 	bool lockToRocket = false;
 
 	sf::Font font;
 	font.loadFromFile("arial.ttf");
 
-	Rocket rocket(sf::Vector3f(0, 0, Constant::EarthRadie), sf::Vector2f(0, 0), 5000, sf::Vector2f(0, -1));
-	float gravity = Constant::calcGravity(Constant::EarthMass, rocket.getRealPosition(), sf::Vector3f(0, 0, 0));
+	//RealPosition, Window Position, Velocity, Thrust, Rotation
+	Rocket rocket(Vector2d((double)0, Constant::EarthRadie), sf::Vector2f(300, 300), sf::Vector2f(0, 0), 50000, sf::Vector2f(1/sqrt(2), 1/sqrt(2)));
+	Vector2d gravity = Constant::calcGravity(Constant::EarthMass, rocket.getRealPosition(), Vector2d(0, 0));
 
-	gui.addElement(&gravity, "Gravity: ", &font);
+
+	//Map Shapes
+	sf::CircleShape earth;
+	earth.setPosition(600, 200);
+	earth.setRadius(Constant::EarthRadie / pow(10, 5));
+	earth.setFillColor(sf::Color::Blue);
+
+	sf::CircleShape mapRocket;
+	mapRocket.setPosition((earth.getPosition().x + earth.getRadius()) - (rocket.getRealPosition().x / pow(10, 5)), (earth.getPosition().y + earth.getRadius()) - (rocket.getRealPosition().y / pow(10, 5)));
+	mapRocket.setRadius(5);
+	mapRocket.setFillColor(sf::Color::Red);
+
+	sf::RectangleShape line;
+	line.setPosition(window.getSize().x / 2, 0);
+	line.setFillColor(sf::Color(128, 128, 128, 255));
+	line.setSize(sf::Vector2f(5, window.getSize().y * 2 / 3));
+
+	//GUI
+	gui.addElement(&timeCount, "Time: ", &font);
+
+	float gravityStr = Constant::calcDistance(gravity, Vector2d(0, 0));
+	gui.addElement(&gravityStr, "Gravity: ", &font);
+
 	float h = 0;
 	gui.addElement(&h, "Height: ", &font);
+
 	while (window.isOpen())
 	{
 		window.clear();
@@ -66,32 +94,42 @@ int main()
 				else if (event.key.code == sf::Keyboard::L) {
 					lockToRocket = !lockToRocket;
 				}
+				else if (event.key.code == sf::Keyboard::Space) {
+					rocket.toggleEngine();
+				}
 				window.setView(view);
 				break;
 			}
 		}
 
 		//Main Loop
-		deltaTime = clock.restart().asSeconds() * 5;
-		timeCount += deltaTime;
-		secCount += deltaTime;
+		float time = clock.restart().asSeconds();
+		deltaTime = time;
+		timeCount += deltaTime ;
+		secCount += time;
 
 		//Update
 		rocket.update(deltaTime, gravity);
 
-		h = rocket.getRealPosition().z - Constant::EarthRadie;
+		gravity = Constant::calcGravity(Constant::EarthMass, rocket.getRealPosition(), Vector2d(0, 0));
 
-		if (lockToRocket) {
-			view.setCenter(rocket.getPosition());
-			window.setView(view);
-			lockToRocket = false;
-		}
+		//Map
+		mapRocket.setPosition((earth.getPosition().x + earth.getRadius()) + (rocket.getRealPosition().x / pow(10, 5)) - mapRocket.getRadius() / 2, (earth.getPosition().y + earth.getRadius()) + (rocket.getRealPosition().y / pow(10, 5)) - mapRocket.getRadius() / 2);
+		window.draw(earth);
+		window.draw(mapRocket);
+		window.draw(line);
+
+		//GUI
+		gravityStr = Constant::calcDistance(gravity, Vector2d(0, 0));
+		h = Constant::calcDistance(rocket.getRealPosition(), Vector2d(0, 0)) - Constant::EarthRadie;
+
 		gui.update(window.getView());
-		timeCount = 0;
-
 		//Time Update
+		fps++;
 		if (secCount >= 1) {
-			gravity = Constant::calcGravity(Constant::EarthMass, rocket.getRealPosition(), sf::Vector3f(0, 0, 0));
+			window.setTitle("Projectile " + std::to_string(fps));
+			fps = 0;
+			secCount = 0;
 		}
 
 		//Render

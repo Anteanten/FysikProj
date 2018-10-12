@@ -1,10 +1,9 @@
 #include "Object.h"
 
-Object::Object(sf::Vector3f position, sf::Vector2f velocity)
+Object::Object(sf::Vector2f position, sf::Vector2f velocity)
 {
 	this->velocity = velocity;
-	realPosition = position;
-
+	this->position = position;
 }
 
 sf::Vector2f Object::getVelocity() const
@@ -17,7 +16,7 @@ sf::Vector2f Object::getPosition() const
 	return position;
 }
 
-sf::Vector3f Object::getRealPosition() const
+Vector2d Object::getRealPosition() const
 {
 	return realPosition;
 }

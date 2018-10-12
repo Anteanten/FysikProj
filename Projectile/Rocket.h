@@ -7,6 +7,8 @@
 
 class Rocket : public Object {
 private:
+	bool engine = true;
+
 	float thrust;
 	sf::Vector2f forward;
 
@@ -14,13 +16,15 @@ private:
 	sf::Text text;
 	sf::Font font;
 
-	sf::Vector3f c;
+	sf::Vector2f c;
 public:
-	Rocket(sf::Vector3f realPosition, sf::Vector2f velocity, float thrust, sf::Vector2f forward);
+	Rocket(Vector2d realPosition, sf::Vector2f winPosition, sf::Vector2f velocity, float thrust, sf::Vector2f forward);
 
 	// (Delta Time, g)
-	void update(float dt, float gravity);
+	void update(float dt, Vector2d gravity);
 	void draw(sf::RenderWindow &window);
+
+	void toggleEngine();
 };
 
 #endif // !ROCKET_H

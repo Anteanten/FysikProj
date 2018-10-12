@@ -2,25 +2,28 @@
 #define OBJECT_H
 
 #include <SFML\Graphics.hpp>
+#include "Constant.h"
+
+typedef sf::Vector2<double> Vector2d;
 
 class Object {
 protected:
 	sf::Vector2f velocity;
 	sf::Vector2f position;
-	sf::Vector3f realPosition;
+	Vector2d realPosition;
 	sf::Vector2f accelleration;
 	float mass;
 
 
 public:
-	Object(sf::Vector3f position, sf::Vector2f velocity);
+	Object(sf::Vector2f position, sf::Vector2f velocity);
 
-	virtual void update(float dt, float gravity) = 0;
+	virtual void update(float dt, Vector2d gravity) = 0;
 	virtual void draw(sf::RenderWindow &window) = 0;
 
 	sf::Vector2f getVelocity() const;
 	sf::Vector2f getPosition() const;
-	sf::Vector3f getRealPosition() const;
+	Vector2d getRealPosition() const;
 	float getMass() const;
 
 	void setVelocity(sf::Vector2f velocity);
