@@ -17,6 +17,7 @@ int main()
 	float deltaTime;
 	float timeCount = 0;
 	float secCount = 0;
+	int timeSpeed = 1;
 	int fps = 0;
 	bool lockToRocket = false;
 
@@ -24,18 +25,24 @@ int main()
 	font.loadFromFile("arial.ttf");
 
 	//RealPosition, Window Position, Velocity, Thrust, Rotation
-	Rocket rocket(Vector2d((double)0, Constant::EarthRadie), sf::Vector2f(300, 300), sf::Vector2f(0, 0), 50000, sf::Vector2f(1/sqrt(2), 1/sqrt(2)));
+	Rocket rocket(Vector2d((double)0, -Constant::EarthRadie), sf::Vector2f(300, 300), sf::Vector2f(0, 0), 50000, 135);
 	Vector2d gravity = Constant::calcGravity(Constant::EarthMass, rocket.getRealPosition(), Vector2d(0, 0));
 
+	sf::RectangleShape background;
+	background.setPosition(0, 0);
+	background.setFillColor(sf::Color::Blue);
+	background.setSize(sf::Vector2f(window.getSize().x / 2, window.getSize().y * 2 / 3));
 
 	//Map Shapes
+	double mapScale = 1 / pow(10, 5);
+
 	sf::CircleShape earth;
 	earth.setPosition(600, 200);
-	earth.setRadius(Constant::EarthRadie / pow(10, 5));
+	earth.setRadius(Constant::EarthRadie * mapScale);
 	earth.setFillColor(sf::Color::Blue);
 
 	sf::CircleShape mapRocket;
-	mapRocket.setPosition((earth.getPosition().x + earth.getRadius()) - (rocket.getRealPosition().x / pow(10, 5)), (earth.getPosition().y + earth.getRadius()) - (rocket.getRealPosition().y / pow(10, 5)));
+	mapRocket.setPosition((earth.getPosition().x + earth.getRadius()) - (rocket.getRealPosition().x * mapScale), (earth.getPosition().y + earth.getRadius()) - (rocket.getRealPosition().y * mapScale));
 	mapRocket.setRadius(5);
 	mapRocket.setFillColor(sf::Color::Red);
 
@@ -70,29 +77,41 @@ int main()
 				//MouseScroll, Zoom window
 			case sf::Event::MouseWheelScrolled:
 				if (event.mouseWheel.x > 0) {
-					view.setSize(view.getSize() * (float)1.01);
+					mapScale *= 1.05f;
+					earth.setRadius(Constant::EarthRadie * mapScale);
 				}
 				else {
-					view.setSize(view.getSize() * (float)0.99);
+					mapScale *= 0.95f;
+					earth.setRadius(Constant::EarthRadie * mapScale);
 				};
 				window.setView(view);
 				break;
 				//WASD, Move camera
 			case sf::Event::KeyPressed:
 				if (event.key.code == sf::Keyboard::W) {
-					view.setCenter(view.getCenter() + sf::Vector2f(0, -5));
+					earth.setPosition(earth.getPosition() + sf::Vector2f(0, 5));
+					mapRocket.setPosition(rocket.getPosition() + sf::Vector2f(0, 5));
 				}
 				else if (event.key.code == sf::Keyboard::S) {
-					view.setCenter(view.getCenter() + sf::Vector2f(0, 5));
+					earth.setPosition(earth.getPosition() + sf::Vector2f(0, -5));
+					mapRocket.setPosition(rocket.getPosition() + sf::Vector2f(0, -5));
 				}
 				else if (event.key.code == sf::Keyboard::A) {
-					view.setCenter(view.getCenter() + sf::Vector2f(-5, 0));
+					earth.setPosition(earth.getPosition() + sf::Vector2f(5, 0));
+					mapRocket.setPosition(rocket.getPosition() + sf::Vector2f(5, 0));
 				}
 				else if (event.key.code == sf::Keyboard::D) {
-					view.setCenter(view.getCenter() + sf::Vector2f(5, 0));
+					earth.setPosition(earth.getPosition() + sf::Vector2f(-5, 0));
+					mapRocket.setPosition(rocket.getPosition() + sf::Vector2f(-5, 0));
 				}
 				else if (event.key.code == sf::Keyboard::L) {
 					lockToRocket = !lockToRocket;
+				}
+				else if (event.key.code == sf::Keyboard::R) {
+					timeSpeed++;
+				}
+				else if (event.key.code == sf::Keyboard::T) {
+					timeSpeed--;
 				}
 				else if (event.key.code == sf::Keyboard::Space) {
 					rocket.toggleEngine();
@@ -103,7 +122,7 @@ int main()
 		}
 
 		//Main Loop
-		float time = clock.restart().asSeconds();
+		float time = clock.restart().asSeconds() * timeSpeed;
 		deltaTime = time;
 		timeCount += deltaTime ;
 		secCount += time;
@@ -114,7 +133,13 @@ int main()
 		gravity = Constant::calcGravity(Constant::EarthMass, rocket.getRealPosition(), Vector2d(0, 0));
 
 		//Map
-		mapRocket.setPosition((earth.getPosition().x + earth.getRadius()) + (rocket.getRealPosition().x / pow(10, 5)) - mapRocket.getRadius() / 2, (earth.getPosition().y + earth.getRadius()) + (rocket.getRealPosition().y / pow(10, 5)) - mapRocket.getRadius() / 2);
+		if (lockToRocket) {
+			mapRocket.setPosition(sf::Vector2f(window.getSize().x * 3 / 4, window.getSize().y / 3));
+			earth.setPosition((mapRocket.getPosition().x - earth.getRadius()) - (rocket.getRealPosition().x * mapScale) + mapRocket.getRadius() / 2, (mapRocket.getPosition().y - earth.getRadius()) - (rocket.getRealPosition().y * mapScale) + mapRocket.getRadius() / 2);
+		}
+		else {
+			mapRocket.setPosition((earth.getPosition().x + earth.getRadius()) + (rocket.getRealPosition().x * mapScale) - mapRocket.getRadius() / 2, (earth.getPosition().y + earth.getRadius()) + (rocket.getRealPosition().y * mapScale) - mapRocket.getRadius() / 2);
+		}
 		window.draw(earth);
 		window.draw(mapRocket);
 		window.draw(line);
@@ -122,6 +147,8 @@ int main()
 		//GUI
 		gravityStr = Constant::calcDistance(gravity, Vector2d(0, 0));
 		h = Constant::calcDistance(rocket.getRealPosition(), Vector2d(0, 0)) - Constant::EarthRadie;
+		if (h < 255 * 250)
+			background.setFillColor(sf::Color(0, 0, 255 - (h / 250), 255));
 
 		gui.update(window.getView());
 		//Time Update
@@ -133,6 +160,7 @@ int main()
 		}
 
 		//Render
+		window.draw(background);
 		rocket.draw(window);
 		gui.draw(window);
 

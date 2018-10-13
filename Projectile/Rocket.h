@@ -7,7 +7,7 @@
 
 class Rocket : public Object {
 private:
-	bool engine = true;
+	bool engine = false;
 
 	float thrust;
 	sf::Vector2f forward;
@@ -18,7 +18,7 @@ private:
 
 	sf::Vector2f c;
 public:
-	Rocket(Vector2d realPosition, sf::Vector2f winPosition, sf::Vector2f velocity, float thrust, sf::Vector2f forward);
+	Rocket(Vector2d realPosition, sf::Vector2f winPosition, sf::Vector2f velocity, float thrust, float angle);
 
 	// (Delta Time, g)
 	void update(float dt, Vector2d gravity);

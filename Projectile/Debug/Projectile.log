@@ -1,14 +1,26 @@
-﻿  main.cpp
-c:\users\boss_student\desktop\rewqa\projectile\constant.h(16): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
-c:\users\boss_student\desktop\rewqa\projectile\constant.h(16): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\boss_student\desktop\rewqa\projectile\constant.h(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\rewqa\projectile\main.cpp(27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\rewqa\projectile\main.cpp(34): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\rewqa\projectile\main.cpp(38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\rewqa\projectile\main.cpp(43): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\boss_student\desktop\rewqa\projectile\main.cpp(45): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\boss_student\desktop\rewqa\projectile\main.cpp(50): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\rewqa\projectile\main.cpp(117): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\rewqa\projectile\main.cpp(123): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\rewqa\projectile\main.cpp(124): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Projectile.vcxproj -> C:\Users\Boss_student\Desktop\rewqa\Debug\Projectile.exe
+﻿  Rocket.cpp
+e:\users\anton\desktop\asfdba\projectile\constant.h(16): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+e:\users\anton\desktop\asfdba\projectile\constant.h(16): warning C4305: 'initializing': truncation from 'double' to 'const float'
+e:\users\anton\desktop\asfdba\projectile\constant.h(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\rocket.cpp(6): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\rocket.cpp(26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+e:\users\anton\desktop\asfdba\projectile\constant.h(16): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
+e:\users\anton\desktop\asfdba\projectile\constant.h(16): warning C4305: 'initializing': truncation from 'double' to 'const float'
+e:\users\anton\desktop\asfdba\projectile\constant.h(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(34): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(50): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(52): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(57): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(81): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(137): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(138): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(141): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(148): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(149): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\users\anton\desktop\asfdba\projectile\main.cpp(151): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+  Generating Code...
+  Projectile.vcxproj -> E:\Users\Anton\Desktop\asfdba\Debug\Projectile.exe
