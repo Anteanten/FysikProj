@@ -10,7 +10,9 @@ Gui::Gui(sf::RenderWindow &window)
 void Gui::update(sf::View view)
 {
 	for (int i = 0; i < elements.size(); i++) {
-		elements[i].text.setString(elements[i].descString + std::to_string(*elements[i].data));
+		std::stringstream str;
+		str << elements[i].descString << std::setprecision(5) << *elements[i].data;
+		elements[i].text.setString(str.str());
 	}
 }
 
@@ -19,14 +21,16 @@ void Gui::addElement(float *data, std::string descString, sf::Font *font)
 	Element tmp;
 	tmp.data = data;
 	tmp.descString = descString;
-	sf::Vector2f pos = gWindow.getPosition() - sf::Vector2f(-20 - gWindow.getSize().x * (elements.size() % ELEMENT_COLUMNS) / ELEMENT_COLUMNS, -20 - gWindow.getSize().y * floor(elements.size() / ELEMENT_ROWS));
+	sf::Vector2f pos = gWindow.getPosition() - sf::Vector2f(-20 - gWindow.getSize().x * (elements.size() % ELEMENT_COLUMNS) / ELEMENT_COLUMNS, -20 - gWindow.getSize().y * floor(elements.size() / ELEMENT_COLUMNS) / ELEMENT_COLUMNS);
 	tmp.eWindow.setPosition(pos);
 	tmp.eWindow.setFillColor(sf::Color(0, 0, 0, 255));
-	tmp.eWindow.setSize(sf::Vector2f(120, 20));
+	tmp.eWindow.setSize(sf::Vector2f(130, 20));
 	tmp.text.setPosition(tmp.eWindow.getPosition());
 	tmp.text.setFont(*font);
 	tmp.text.setCharacterSize(15);
-	tmp.text.setString(descString + std::to_string(*data));
+	std::stringstream str;
+	str << descString << std::setprecision(2) << *data;
+	tmp.text.setString(str.str());
 
 	elements.push_back(tmp);
 }

@@ -1,1 +1,7 @@
-﻿  Projectile.vcxproj -> C:\Users\Jacob A\Documents\GitHub\FysikProj\Debug\Projectile.exe
+﻿  Gui.cpp
+c:\users\boss_student\desktop\gfcdxsgvl\projectile\gui.cpp(5): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\boss_student\desktop\gfcdxsgvl\projectile\gui.cpp(6): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\boss_student\desktop\gfcdxsgvl\projectile\gui.cpp(12): warning C4018: '<': signed/unsigned mismatch
+c:\users\boss_student\desktop\gfcdxsgvl\projectile\gui.cpp(24): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\boss_student\desktop\gfcdxsgvl\projectile\gui.cpp(41): warning C4018: '<': signed/unsigned mismatch
+  Projectile.vcxproj -> C:\Users\Boss_student\Desktop\gfcdxsgvl\Debug\Projectile.exe

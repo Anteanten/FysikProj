@@ -17,7 +17,7 @@ int main()
 	float deltaTime;
 	float timeCount = 0;
 	float secCount = 0;
-	int timeSpeed = 1;
+	float timeSpeed = 1;
 	int fps = 0;
 	bool lockToRocket = false;
 
@@ -53,6 +53,7 @@ int main()
 
 	//GUI
 	gui.addElement(&timeCount, "Time: ", &font);
+	gui.addElement(&timeSpeed, "TimeSpeed: ", &font);
 
 	float gravityStr = Constant::calcDistance(gravity, Vector2d(0, 0));
 	gui.addElement(&gravityStr, "Gravity: ", &font);

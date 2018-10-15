@@ -2,9 +2,10 @@
 #define GUI_H
 
 #include <SFML/Graphics.hpp>
+#include <iomanip>
+#include <sstream>
 
-#define ELEMENT_ROWS 3
-#define ELEMENT_COLUMNS 5
+#define ELEMENT_COLUMNS 6
 
 class Gui {
 private:
