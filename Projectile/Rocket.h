@@ -7,18 +7,27 @@
 
 class Rocket : public Object {
 private:
+	struct Stage {
+		float fuelSpeed;
+		double emptyMass;
+		double fuelMass;
+		float fuelConsumption;
+		sf::RectangleShape shape;
+	};
 	bool engine = false;
 
-	float thrust;
 	sf::Vector2f forward;
 
-	sf::RectangleShape shape;
 	sf::Text text;
 	sf::Font font;
+	
+	Stage stages[3];
+	int currentStage;
+	int maxStage;
 
 	sf::Vector2f c;
 public:
-	Rocket(Vector2d realPosition, sf::Vector2f winPosition, sf::Vector2f velocity, float thrust, float angle);
+	Rocket(Vector2d realPosition, sf::Vector2f winPosition, sf::Vector2f velocity, float angle);
 
 	// (Delta Time, g)
 	void update(float dt, Vector2d gravity);

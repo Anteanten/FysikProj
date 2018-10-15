@@ -25,7 +25,7 @@ int main()
 	font.loadFromFile("arial.ttf");
 
 	//RealPosition, Window Position, Velocity, Thrust, Rotation
-	Rocket rocket(Vector2d((double)0, -Constant::EarthRadie), sf::Vector2f(300, 300), sf::Vector2f(0, 0), 50000, 135);
+	Rocket rocket(Vector2d((double)0, -Constant::EarthRadie), sf::Vector2f(300, 300), sf::Vector2f(0, 0), 90);
 	Vector2d gravity = Constant::calcGravity(Constant::EarthMass, rocket.getRealPosition(), Vector2d(0, 0));
 
 	sf::RectangleShape background;
@@ -57,6 +57,9 @@ int main()
 
 	float gravityStr = Constant::calcDistance(gravity, Vector2d(0, 0));
 	gui.addElement(&gravityStr, "Gravity: ", &font);
+
+	float rocketMass = rocket.getMass();
+	gui.addElement(&rocketMass, "Mass: ", &font);
 
 	float h = 0;
 	gui.addElement(&h, "Height: ", &font);
@@ -124,8 +127,8 @@ int main()
 		}
 
 		//Main Loop
-		float time = clock.restart().asSeconds() * timeSpeed;
-		deltaTime = time;
+		float time = clock.restart().asSeconds();
+		deltaTime = time * timeSpeed;
 		timeCount += deltaTime ;
 		secCount += time;
 
@@ -147,6 +150,7 @@ int main()
 		window.draw(line);
 
 		//GUI
+		rocketMass = rocket.getMass();
 		gravityStr = Constant::calcDistance(gravity, Vector2d(0, 0));
 		h = Constant::calcDistance(rocket.getRealPosition(), Vector2d(0, 0)) - Constant::EarthRadie;
 		if (h < 255 * 250)
