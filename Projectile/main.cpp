@@ -111,6 +111,7 @@ int main()
 					timeSpeed++;
 				}
 				else if (event.key.code == sf::Keyboard::T) {
+					if(timeSpeed != 1)
 					timeSpeed--;
 				}
 				else if (event.key.code == sf::Keyboard::Space) {
