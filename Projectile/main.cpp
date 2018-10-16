@@ -25,7 +25,7 @@ int main()
 	font.loadFromFile("arial.ttf");
 
 	//RealPosition, Window Position, Velocity, Thrust, Rotation
-	Rocket rocket(Vector2d((double)0, -Constant::EarthRadie), sf::Vector2f(300, 300), sf::Vector2f(0, 0), 90);
+	Rocket rocket(Vector2d((double)0, -Constant::EarthRadie), sf::Vector2f(300, 300), sf::Vector2f(0, 0), 270);
 	Vector2d gravity = Constant::calcGravity(Constant::EarthMass, rocket.getRealPosition(), Vector2d(0, 0));
 
 	sf::RectangleShape background;
@@ -108,18 +108,53 @@ int main()
 					earth.setPosition(earth.getPosition() + sf::Vector2f(-5, 0));
 					mapRocket.setPosition(rocket.getPosition() + sf::Vector2f(-5, 0));
 				}
-				else if (event.key.code == sf::Keyboard::L) {
-					lockToRocket = !lockToRocket;
+				else if (event.key.code == sf::Keyboard::Q) {
+					rocket.setRotation(rocket.getRotation() + 5);
 				}
-				else if (event.key.code == sf::Keyboard::R) {
-					timeSpeed++;
+				else if (event.key.code == sf::Keyboard::E) {
+					rocket.setRotation(rocket.getRotation() - 5);
+				}
+				break;
+			case sf::Event::KeyReleased:
+				if (event.key.code == sf::Keyboard::R) {
+					if (timeSpeed < 5) {
+						timeSpeed++;
+					}
+					else if (timeSpeed < 20) {
+						timeSpeed *= 2;
+					}
+					else if (timeSpeed == 20) {
+						timeSpeed = 50;
+					}
+					else if(timeSpeed < 200){
+						timeSpeed += 50;
+					}
+					else {
+						timeSpeed += 100;
+					}
 				}
 				else if (event.key.code == sf::Keyboard::T) {
-					if(timeSpeed != 1)
-					timeSpeed--;
+						if (timeSpeed <= 5 && timeSpeed > 0) {
+							timeSpeed--;
+						}
+						else if (timeSpeed <= 20) {
+							timeSpeed /= 2;
+						}
+						else if (timeSpeed == 50) {
+							timeSpeed = 20;
+						}
+						else if (timeSpeed <= 200) {
+							timeSpeed -= 50;
+						}
+						else {
+							timeSpeed -= 100;
+						}
 				}
 				else if (event.key.code == sf::Keyboard::Space) {
 					rocket.toggleEngine();
+				}
+				else if (event.key.code == sf::Keyboard::L) {
+					lockToRocket = !lockToRocket;
 				}
 				window.setView(view);
 				break;
@@ -133,7 +168,9 @@ int main()
 		secCount += time;
 
 		//Update
-		rocket.update(deltaTime, gravity);
+		if (timeSpeed > 0) {
+			rocket.update(deltaTime, gravity);
+		}
 
 		gravity = Constant::calcGravity(Constant::EarthMass, rocket.getRealPosition(), Vector2d(0, 0));
 

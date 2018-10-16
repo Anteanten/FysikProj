@@ -33,6 +33,9 @@ public:
 	void update(float dt, Vector2d gravity);
 	void draw(sf::RenderWindow &window);
 
+	float getRotation() const;
+	void setRotation(float angle);
+
 	void toggleEngine();
 };
 

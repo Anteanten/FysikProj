@@ -26,6 +26,8 @@ public:
 	Vector2d getRealPosition() const;
 	float getMass() const;
 
+
+
 	void setVelocity(sf::Vector2f velocity);
 	void setPosition(sf::Vector2f position);
 	
