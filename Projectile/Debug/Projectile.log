@@ -1,19 +1,22 @@
-﻿  main.cpp
-c:\users\boss_student\desktop\gfkjlhlk\projectile\constant.h(16): warning C4838: conversion from 'double' to 'const float' requires a narrowing conversion
-c:\users\boss_student\desktop\gfkjlhlk\projectile\constant.h(16): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\boss_student\desktop\gfkjlhlk\projectile\constant.h(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(34): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(45): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(50): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(52): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(58): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(89): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(179): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(180): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(183): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(191): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(192): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\boss_student\desktop\gfkjlhlk\projectile\main.cpp(194): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-  Projectile.vcxproj -> C:\Users\Boss_student\Desktop\gfkjlhlk\Debug\Projectile.exe
+﻿  Rocket.cpp
+c:\users\jacob a\documents\github\fysikproj\projectile\constant.h(16): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\jacob a\documents\github\fysikproj\projectile\constant.h(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(25): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(26): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(27): warning C4305: 'argument': truncation from 'double' to 'T'
+          with
+          [
+              T=float
+          ]
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(51): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(65): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(77): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Projectile.vcxproj -> C:\Users\Jacob A\Documents\GitHub\FysikProj\Debug\Projectile.exe
