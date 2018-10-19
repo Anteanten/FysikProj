@@ -1,22 +1,25 @@
 ﻿  Rocket.cpp
-c:\users\jacob a\documents\github\fysikproj\projectile\constant.h(16): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\jacob a\documents\github\fysikproj\projectile\constant.h(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(25): warning C4305: 'argument': truncation from 'double' to 'T'
+c:\users\jacob a\documents\github\fysikproj\projectile\constant.h(20): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\jacob a\documents\github\fysikproj\projectile\constant.h(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\constant.h(57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(33): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(26): warning C4305: 'argument': truncation from 'double' to 'T'
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(34): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(27): warning C4305: 'argument': truncation from 'double' to 'T'
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(35): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(54): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(69): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(82): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(62): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(77): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(86): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(92): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\jacob a\documents\github\fysikproj\projectile\rocket.cpp(97): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Projectile.vcxproj -> C:\Users\Jacob A\Documents\GitHub\FysikProj\Debug\Projectile.exe

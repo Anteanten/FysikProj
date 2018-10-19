@@ -12,6 +12,10 @@ namespace Constant {
 	const double EarthMass = 5.972 * pow(10, 24);
 	const double EarthRadie = 6.371 * pow(10, 6);
 
+	const float pSea = 101325;
+	const float pAltitude[] = { 101325, 54054, 26506, 5531, 1198, 287, 0 };
+	const float pHeight[] = { 0, 5000, 10000, 20000, 30000, 40000, 45000 };
+
 	const int airHeight[] = { 0, 1000, 5000, 10000, 20000, 30000, 50000, 80000, 200000 };
 	const float airDensity[] = { 1.225, 1.112, 0.7364, 0.4135, 0.08891, 0.01841, 0.001027, 0.00001846, 0};
 
@@ -43,6 +47,18 @@ namespace Constant {
 			}
 		}
 		return d;
+	};
+
+	static double calcPressure(double height)
+	{
+		float p = 0;
+		for (int i = 1; i < 9; i++) {
+			if (height > pHeight[i - 1] && height < pHeight[i]) {
+				p = (pAltitude[i - 1] * (pHeight[i] - height) + pAltitude[i] * (height - pHeight[i - 1])) / (pHeight[i] - pHeight[i - 1]);
+				break;
+			}
+		}
+		return p;
 	};
 }
 

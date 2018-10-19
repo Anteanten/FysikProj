@@ -12,6 +12,8 @@ private:
 		double emptyMass;
 		double fuelMass;
 		float fuelConsumption;
+		double fVac;
+		double fSea;
 		sf::RectangleShape shape;
 	};
 	bool engine = false;

@@ -21,6 +21,14 @@ Rocket::Rocket(Vector2d realPosition, sf::Vector2f position, sf::Vector2f veloci
 	this->stages[0].fuelConsumption = 2290000 / 168;
 	this->stages[1].fuelConsumption = 496200 / 360;
 	this->stages[2].fuelConsumption = 123000 / 500;
+	
+	this->stages[0].fVac = 7770 * 1000 * 5;
+	this->stages[1].fVac = 1033.1 * 1000 * 5;
+	this->stages[2].fVac = 1033.1 * 1000 *  1;
+
+	this->stages[0].fSea = 6770 * 1000 * 5;
+	this->stages[1].fSea = 486.2 * 1000 * 5;
+	this->stages[2].fSea = 486.2 * 1000 * 1;
 
 	this->stages[0].shape.setSize(sf::Vector2f(10.1, 42.1));
 	this->stages[1].shape.setSize(sf::Vector2f(10.1, 24.8));
@@ -75,6 +83,8 @@ void Rocket::update(float dt, Vector2d gravity)
 
 	if (height > 0 || engine) {
 		float f = 0;
+		float p = Constant::calcPressure(height);
+
 		if (stages[currentStage].fuelMass > 0) {
 			if (engine) {
 				float vMass = stages[currentStage].fuelConsumption * dt;
@@ -83,14 +93,15 @@ void Rocket::update(float dt, Vector2d gravity)
 
 				stages[currentStage].fuelMass -= vMass;
 
-				f = stages[currentStage].fuelSpeed * vMass;
+				/*f = stages[currentStage].fuelSpeed * vMass;*/
+				f = stages[currentStage].fVac - (stages[currentStage].fVac - stages[currentStage].fSea) * (p / Constant::pSea);
 			}
 		}
 		else {
 			if(currentStage < maxStage - 1)
 			currentStage++;
 		}
-		accelleration = forward * f / mass / dt + (-sf::Vector2f(gravity) + drag);
+		accelleration = forward * f / mass + (-sf::Vector2f(gravity) + drag);
 		velocity += accelleration * dt;
 		realPosition += Vector2d(velocity) * (double)dt;
 	}
