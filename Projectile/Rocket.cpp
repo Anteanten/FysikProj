@@ -29,10 +29,11 @@ Rocket::Rocket(Vector2d realPosition, sf::Vector2f position, sf::Vector2f veloci
 	this->currentStage = 0;
 	this->maxStage = 3;
 
+	transform.rotate(angle + 90, position);
+
 	for (int i = 0; i < maxStage; i++) {
 		stages[i].shape.setPosition(this->position - sf::Vector2f(stages[i].shape.getSize().x/2, stages[i].shape.getSize().y * i));
 		stages[i].shape.setFillColor(sf::Color::White);
-		stages[i].shape.setRotation(angle - 270);
 	}
 
 
@@ -46,12 +47,15 @@ Rocket::Rocket(Vector2d realPosition, sf::Vector2f position, sf::Vector2f veloci
 void Rocket::update(float dt, Vector2d gravity)
 {
 	float speed = sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
-	sf::Vector2f drag(0,0);
 	double height = sqrt(pow(realPosition.x, 2) + pow(realPosition.y, 2)) - Constant::EarthRadie;
+
+	//Air Resitance Values
+	sf::Vector2f drag(0, 0);
 	float d = Constant::calcAirDensity(height);
 	float r = stages[currentStage].shape.getSize().x;
 	double c = 0;
 
+	//Drag Coefficent
 	if (speed < 343)
 		c = (((-1) * (0.1 / 343)) * speed) + 0.6;
 	else if (speed >= 343 && speed <= 1029)
@@ -65,6 +69,7 @@ void Rocket::update(float dt, Vector2d gravity)
 		mass += stages[i].fuelMass + stages[i].emptyMass;
 	}
 
+	//Drag
 	if (speed != 0 && d != 0)
 		drag = -sf::Vector2f(velocity.x / speed, velocity.y / speed)*(float)(0.5 * (d * c * r * r * 3.14 * speed * speed)) / mass;
 
@@ -89,19 +94,12 @@ void Rocket::update(float dt, Vector2d gravity)
 		velocity += accelleration * dt;
 		realPosition += Vector2d(velocity) * (double)dt;
 	}
-
-	//Text update
-	text.setPosition(position + sf::Vector2f(10, 0));
-	text.setString(
-		"v: " + std::to_string(speed) + "\n" +
-		"a: " + std::to_string((sqrt(accelleration.x * accelleration.x + accelleration.y * accelleration.y)))
-	);
 }
 
 void Rocket::draw(sf::RenderWindow & window)
 {
 	for(int i = currentStage; i < maxStage; i++)
-	window.draw(stages[i].shape);
+	window.draw(stages[i].shape, transform);
 
 	window.draw(text);
 }
@@ -121,9 +119,8 @@ float Rocket::getRotation() const
 void Rocket::setRotation(float angle)
 {
 	this->forward = sf::Vector2f(cos(angle * 3.14159f / 180.0f), sin(angle * 3.14159f / 180.0f));
-	for (int i = currentStage; i < maxStage; i++) {
-		stages[i].shape.setRotation(angle - 270);
-	}
+	transform = sf::Transform::Identity;
+	transform.rotate(angle + 90, position);
 }
 
 void Rocket::toggleEngine()

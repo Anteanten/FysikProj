@@ -11,6 +11,11 @@ sf::Vector2f Object::getVelocity() const
 	return velocity;
 }
 
+sf::Vector2f Object::getAcceleration() const
+{
+	return accelleration;
+}
+
 sf::Vector2f Object::getPosition() const
 {
 	return position;

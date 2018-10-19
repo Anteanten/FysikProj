@@ -22,6 +22,7 @@ public:
 	virtual void draw(sf::RenderWindow &window) = 0;
 
 	sf::Vector2f getVelocity() const;
+	sf::Vector2f getAcceleration() const;
 	sf::Vector2f getPosition() const;
 	Vector2d getRealPosition() const;
 	float getMass() const;

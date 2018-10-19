@@ -21,6 +21,8 @@ private:
 	sf::Text text;
 	sf::Font font;
 	
+	sf::Transform transform;
+
 	Stage stages[3];
 	int currentStage;
 	int maxStage;

@@ -64,6 +64,25 @@ int main()
 	float h = 0;
 	gui.addElement(&h, "Height: ", &font);
 
+	float v = 0;
+	gui.addElement(&v, "Speed: ", &font);
+
+	float a = 0;
+	gui.addElement(&a, "Accel: ", &font);
+
+	//MISC
+	sf::Text rocketText;
+	rocketText.setFont(font);
+	rocketText.setCharacterSize(20);
+	rocketText.setPosition(10, 10);
+	rocketText.setString("Toggle Engine: Space\nRotate: Q/E\nChange Time: R/T");
+
+	sf::Text mapText;
+	mapText.setFont(font);
+	mapText.setCharacterSize(20);
+	mapText.setPosition(window.getSize().x / 2 + 10, 10);
+	mapText.setString("Lock To Rocket: L\nCamera: WASD\nZoom: MouseWheel");
+
 	while (window.isOpen())
 	{
 		window.clear();
@@ -187,6 +206,8 @@ int main()
 		window.draw(line);
 
 		//GUI
+		a = sqrt(pow(rocket.getAcceleration().x, 2) + pow(rocket.getAcceleration().y, 2));
+		v = sqrt(pow(rocket.getVelocity().x, 2) + pow(rocket.getVelocity().y, 2));
 		rocketMass = rocket.getMass();
 		gravityStr = Constant::calcDistance(gravity, Vector2d(0, 0));
 		h = Constant::calcDistance(rocket.getRealPosition(), Vector2d(0, 0)) - Constant::EarthRadie;
@@ -206,6 +227,8 @@ int main()
 		window.draw(background);
 		rocket.draw(window);
 		gui.draw(window);
+		window.draw(rocketText);
+		window.draw(mapText);
 
 		window.display();
 	}
