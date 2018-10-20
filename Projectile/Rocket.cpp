@@ -3,45 +3,50 @@
 Rocket::Rocket(Vector2d realPosition, sf::Vector2f position, sf::Vector2f velocity, float angle) : Object(position, velocity)
 {
 	this->forward = sf::Vector2f(cos(angle * 3.14159f / 180.0f), sin(angle * 3.14159f / 180.0f));
-	this->mass = 100;
+	this->mass = 0;
 	this->realPosition = realPosition;
 
 	this->stages[0].emptyMass = 130000;
 	this->stages[1].emptyMass = 40100;
 	this->stages[2].emptyMass = 13500;
-
-	this->stages[0].fuelMass = 2290000;
-	this->stages[1].fuelMass = 496200;
-	this->stages[2].fuelMass = 123000;
-
-	this->stages[0].fuelSpeed = 2560 * 10;
-	this->stages[1].fuelSpeed = 4130 * 10;
-	this->stages[2].fuelSpeed = 4130 * 10;
-
-	this->stages[0].fuelConsumption = 2290000 / 168;
-	this->stages[1].fuelConsumption = 496200 / 360;
-	this->stages[2].fuelConsumption = 123000 / 500;
+	this->stages[3].emptyMass = 10000;
 	
-	this->stages[0].fVac = 7770 * 1000 * 5;
-	this->stages[1].fVac = 1033.1 * 1000 * 5;
-	this->stages[2].fVac = 1033.1 * 1000 *  1;
 
-	this->stages[0].fSea = 6770 * 1000 * 5;
+	this->stages[0].fuelMass = 2990000;
+	this->stages[1].fuelMass = 496200;
+	this->stages[2].fuelMass = 133000;
+	this->stages[3].fuelMass = 0;
+
+	this->stages[0].fuelConsumption = 2578 * 6;
+	this->stages[1].fuelConsumption = 276 * 5;
+	this->stages[2].fuelConsumption = 276;
+	this->stages[3].fuelConsumption = 0;
+	
+	this->stages[0].fVac = 7770 * 1000 * 6;
+	this->stages[1].fVac = 1033.1 * 1000 * 5;
+	this->stages[2].fVac = 1033.1 * 1000 * 1;
+	this->stages[3].fVac = 0;
+
+	this->stages[0].fSea = 6770 * 1000 * 6;
 	this->stages[1].fSea = 486.2 * 1000 * 5;
 	this->stages[2].fSea = 486.2 * 1000 * 1;
+	this->stages[3].fSea = 0;
 
 	this->stages[0].shape.setSize(sf::Vector2f(10.1, 42.1));
 	this->stages[1].shape.setSize(sf::Vector2f(10.1, 24.8));
 	this->stages[2].shape.setSize(sf::Vector2f(6.6, 18.8));
+	this->stages[3].shape.setSize(sf::Vector2f(3.3, 6.0));
 
 	this->currentStage = 0;
-	this->maxStage = 3;
+	this->maxStage = 4;
 
 	transform.rotate(angle + 90, position);
 
-	for (int i = 0; i < maxStage; i++) {
-		stages[i].shape.setPosition(this->position - sf::Vector2f(stages[i].shape.getSize().x/2, stages[i].shape.getSize().y * i));
-		stages[i].shape.setFillColor(sf::Color::White);
+	stages[0].shape.setPosition(position);
+
+	for (int i = 1; i < maxStage; i++) {
+		stages[i].shape.setPosition(stages[i-1].shape.getPosition() - sf::Vector2f((stages[i].shape.getSize().x - stages[i-1].shape.getSize().x)/2, stages[i].shape.getSize().y));
+		stages[i].shape.setFillColor(sf::Color(255, 255 * i / maxStage, 255 * i / maxStage, 255));
 	}
 
 
@@ -54,7 +59,7 @@ Rocket::Rocket(Vector2d realPosition, sf::Vector2f position, sf::Vector2f veloci
 
 void Rocket::update(float dt, Vector2d gravity)
 {
-	float speed = sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+	speed = sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
 	double height = sqrt(pow(realPosition.x, 2) + pow(realPosition.y, 2)) - Constant::EarthRadie;
 
 	//Air Resitance Values
@@ -113,6 +118,17 @@ void Rocket::draw(sf::RenderWindow & window)
 	window.draw(stages[i].shape, transform);
 
 	window.draw(text);
+}
+
+float Rocket::getVelocityUp(Vector2d gravity) const
+{
+	return velocity.x * gravity.x + velocity.y * gravity.y;
+}
+
+float Rocket::getVelocitySide(Vector2d gravity) const
+{
+	sf::Vector2f g = sf::Vector2f(gravity.y, -gravity.x);
+	return abs(velocity.x * g.x + velocity.y * g.y);
 }
 
 float Rocket::getRotation() const

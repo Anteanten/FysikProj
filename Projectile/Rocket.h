@@ -8,7 +8,6 @@
 class Rocket : public Object {
 private:
 	struct Stage {
-		float fuelSpeed;
 		double emptyMass;
 		double fuelMass;
 		float fuelConsumption;
@@ -25,7 +24,7 @@ private:
 	
 	sf::Transform transform;
 
-	Stage stages[3];
+	Stage stages[4];
 	int currentStage;
 	int maxStage;
 
@@ -36,6 +35,9 @@ public:
 	// (Delta Time, g)
 	void update(float dt, Vector2d gravity);
 	void draw(sf::RenderWindow &window);
+
+	float getVelocityUp(Vector2d gravity) const;
+	float getVelocitySide(Vector2d gravity) const;
 
 	float getRotation() const;
 	void setRotation(float angle);

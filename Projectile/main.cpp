@@ -70,6 +70,12 @@ int main()
 	float a = 0;
 	gui.addElement(&a, "Accel: ", &font);
 
+	float up = 0;
+	gui.addElement(&up, "Up Speed: ", &font);
+
+	float side = 0;
+	gui.addElement(&side, "Side Speed: ", &font);
+
 	//MISC
 	sf::Text rocketText;
 	rocketText.setFont(font);
@@ -208,6 +214,8 @@ int main()
 		//GUI
 		a = sqrt(pow(rocket.getAcceleration().x, 2) + pow(rocket.getAcceleration().y, 2));
 		v = sqrt(pow(rocket.getVelocity().x, 2) + pow(rocket.getVelocity().y, 2));
+		up = rocket.getVelocityUp(gravity / (double)gravityStr);
+		side = rocket.getVelocitySide(gravity / (double)gravityStr);
 		rocketMass = rocket.getMass();
 		gravityStr = Constant::calcDistance(gravity, Vector2d(0, 0));
 		h = Constant::calcDistance(rocket.getRealPosition(), Vector2d(0, 0)) - Constant::EarthRadie;

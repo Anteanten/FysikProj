@@ -8,6 +8,8 @@ typedef sf::Vector2<double> Vector2d;
 
 class Object {
 protected:
+	float speed;
+
 	sf::Vector2f velocity;
 	sf::Vector2f position;
 	Vector2d realPosition;
