@@ -29,6 +29,12 @@ private:
 	int maxStage;
 
 	sf::Vector2f c;
+
+	double apoapsis, periapsis;
+	double orbitalPeriod;
+
+	void predictOrbit(Vector2d gravity);
+
 public:
 	Rocket(Vector2d realPosition, sf::Vector2f winPosition, sf::Vector2f velocity, float angle);
 
@@ -38,6 +44,10 @@ public:
 
 	float getVelocityUp(Vector2d gravity) const;
 	float getVelocitySide(Vector2d gravity) const;
+
+	float getApoapasis() const;
+	float getPeriapsis() const;
+	float getOrbitalPeriod() const;
 
 	float getRotation() const;
 	void setRotation(float angle);

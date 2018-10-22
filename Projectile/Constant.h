@@ -7,6 +7,9 @@
 namespace Constant {
 	typedef sf::Vector2<double> Vector2d;
 
+	static double length(Vector2d vec) {
+		return sqrt(pow(vec.x, 2) + pow(vec.y, 2));
+	}
 
 	//Earth Constants
 	const double EarthMass = 5.972 * pow(10, 24);

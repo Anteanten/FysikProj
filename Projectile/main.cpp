@@ -76,6 +76,15 @@ int main()
 	float side = 0;
 	gui.addElement(&side, "Side Speed: ", &font);
 
+	float apo = 0;
+	gui.addElement(&apo, "Apoapis: ", &font);
+
+	float per = 0;
+	gui.addElement(&per, "Periapsis: ", &font);
+
+	float T = 0;
+	gui.addElement(&T, "Orbit T: ", &font);
+
 	//MISC
 	sf::Text rocketText;
 	rocketText.setFont(font);
@@ -216,7 +225,10 @@ int main()
 		v = sqrt(pow(rocket.getVelocity().x, 2) + pow(rocket.getVelocity().y, 2));
 		up = rocket.getVelocityUp(gravity / (double)gravityStr);
 		side = rocket.getVelocitySide(gravity / (double)gravityStr);
+		apo = rocket.getApoapasis() - Constant::EarthRadie;
+		per = rocket.getPeriapsis() - Constant::EarthRadie;
 		rocketMass = rocket.getMass();
+		T = rocket.getOrbitalPeriod();
 		gravityStr = Constant::calcDistance(gravity, Vector2d(0, 0));
 		h = Constant::calcDistance(rocket.getRealPosition(), Vector2d(0, 0)) - Constant::EarthRadie;
 		if (h < 255 * 250)

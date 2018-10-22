@@ -1,5 +1,20 @@
 #include "Rocket.h"
 
+void Rocket::predictOrbit(Vector2d gravity)
+{
+	float h = realPosition.x * velocity.y - realPosition.y * velocity.x;
+	float speed = sqrt(pow(velocity.x, 2) + pow(velocity.y, 2));
+	double mu = Constant::EarthMass * Constant::GravityConstant;
+	double height = Constant::calcDistance(realPosition, Vector2d(0, 0));
+	Vector2d e = ((pow(speed, 2) - mu / height) * realPosition - (realPosition.x * velocity.x + realPosition.y * velocity.y) * Vector2d(velocity)) / mu;
+	double ee = sqrt(pow(e.x, 2) + pow(e.y, 2));
+	double energy = pow(speed, 2) / 2 - mu / height;
+	double a = -mu / (2 * energy);
+	orbitalPeriod = 2 * 3.1415 * sqrt(pow(a, 3) / mu);
+	apoapsis = a * (1 + ee);
+	periapsis = a * (1 - ee);
+}
+
 Rocket::Rocket(Vector2d realPosition, sf::Vector2f position, sf::Vector2f velocity, float angle) : Object(position, velocity)
 {
 	this->forward = sf::Vector2f(cos(angle * 3.14159f / 180.0f), sin(angle * 3.14159f / 180.0f));
@@ -109,6 +124,8 @@ void Rocket::update(float dt, Vector2d gravity)
 		accelleration = forward * f / mass + (-sf::Vector2f(gravity) + drag);
 		velocity += accelleration * dt;
 		realPosition += Vector2d(velocity) * (double)dt;
+
+		predictOrbit(gravity);
 	}
 }
 
@@ -129,6 +146,21 @@ float Rocket::getVelocitySide(Vector2d gravity) const
 {
 	sf::Vector2f g = sf::Vector2f(gravity.y, -gravity.x);
 	return abs(velocity.x * g.x + velocity.y * g.y);
+}
+
+float Rocket::getApoapasis() const
+{
+	return apoapsis;
+}
+
+float Rocket::getPeriapsis() const
+{
+	return periapsis;
+}
+
+float Rocket::getOrbitalPeriod() const
+{
+	return orbitalPeriod;
 }
 
 float Rocket::getRotation() const
